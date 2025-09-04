@@ -16,7 +16,6 @@
   "description": "",
   "dependencies": {
     "@fastify/cors": "^9.0.1",
-    "@types/node": "^22.5.4",
     "dotenv": "^16.4.5",
     "fastify": "^4.26.2",
     "tsx": "^4.19.1",
@@ -24,5 +23,8 @@
     "undici": "^6.19.8",
     "vitest": "^2.0.5",
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0"
   }
 }
