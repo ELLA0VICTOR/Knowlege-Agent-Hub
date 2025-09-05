@@ -1,6 +1,7 @@
 {
     "rewrites": [
       { "source": "/api/(.*)", "destination": "https://knowlege-agent-hub-backend.onrender.com/api/$1" },
+      { "source": "/sources", "destination": "https://knowlege-agent-hub-backend.onrender.com/api/sources" },
       { "source": "/health", "destination": "https://knowlege-agent-hub-backend.onrender.com/health" }
     ]
   }
