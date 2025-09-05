@@ -13,7 +13,17 @@ await app.register(queryRoute);
 await app.register(sourcesRoute);
 await app.register(openaiProxyRoute);
 
-app.get('/health', async () => ({ ok: true }));
+app.get('/health', async () => {
+  try {
+    const res = await fetch("https://api.coingecko.com/api/v3/ping");
+    const json = await res.json();
+    app.log.info({ coingecko: json }, "CoinGecko ping success");
+    return { ok: true, coingecko: json };
+  } catch (err) {
+    app.log.error({ err }, "CoinGecko ping failed");
+    return { ok: true, coingecko: null, error: String(err) };
+  }
+});
 
 app.listen({ port: CONFIG.PORT, host: '0.0.0.0' })
   .then(addr => app.log.info(`Backend listening on ${addr}`))
