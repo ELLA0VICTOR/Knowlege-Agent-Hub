@@ -1,5 +1,5 @@
 import { CONFIG } from '../config.js';
-import type { OpenAIChatCompletionRequest } from '@shared/types';
+import type { OpenAIChatCompletionRequest } from '../types.js';
 
 export async function openAIStream(req: OpenAIChatCompletionRequest): Promise<Response> {
   const url = `${CONFIG.OPENAI_BASE_URL.replace(/\/+$/, '')}/v1/chat/completions`;
@@ -24,7 +24,13 @@ export async function openAIStream(req: OpenAIChatCompletionRequest): Promise<Re
   });
 
   console.log(`📊 Response status: ${r.status} ${r.statusText}`);
-  console.log(`📋 Response headers:`, Object.fromEntries(r.headers.entries()));
+  
+  // Convert headers to a simple object for logging (Node.js compatible)
+  const headersObj: Record<string, string> = {};
+  r.headers.forEach((value, key) => {
+    headersObj[key] = value;
+  });
+  console.log(`📋 Response headers:`, headersObj);
 
   if (!r.ok) {
     const body = await r.text();

@@ -6,7 +6,7 @@ import { fetchArxiv } from '../services/arxiv.js';
 import { fetchOpenMeteo } from '../services/openmeteo.js';
 import { openAIStream } from '../ai/openai.js';
 import { CONFIG } from '../config.js';
-import type { SourceKey, AgentQueryBody, OpenAIStreamDelta } from '@shared/types.js';
+import type { SourceKey, AgentQueryBody, OpenAIStreamDelta } from '../types.js';
 
 const BodySchema = z.object({
   query: z.string().min(1).max(2000), // Add max length

@@ -1,4 +1,4 @@
-import { ExternalSourceResult, SourceKey } from "@shared/types";
+import { ExternalSourceResult, SourceKey } from "../types.js";
 
 export async function fetchCoinGecko(query: string): Promise<ExternalSourceResult> {
   // Naive: if query mentions a coin, try to fetch price (default bitcoin)

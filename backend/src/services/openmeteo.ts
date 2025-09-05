@@ -1,4 +1,4 @@
-import { ExternalSourceResult, SourceKey } from '@shared/types';
+import { ExternalSourceResult, SourceKey } from '../types.js';
 
 //
 // Geocoding API response

@@ -1,4 +1,4 @@
-import { ExternalSourceResult, SourceKey } from "@shared/types.js";
+import { ExternalSourceResult, SourceKey } from "../types.js";
 
 export async function fetchArxiv(query: string): Promise<ExternalSourceResult> {
   const q = encodeURIComponent(query.replace(/\s+/g, "+"));
