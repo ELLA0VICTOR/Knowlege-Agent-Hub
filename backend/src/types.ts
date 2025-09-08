@@ -1,4 +1,4 @@
-export type SourceKey = 'coingecko' | 'arxiv' | 'openmeteo';
+export type SourceKey = 'coingecko' | 'arxiv' | 'openweather';
 
 export interface ExternalSourceResult {
   key: SourceKey;

@@ -17,10 +17,14 @@ export const CONFIG = {
   CORS_ORIGIN: process.env.CORS_ORIGIN || '*',
   NODE_ENV: process.env.NODE_ENV || 'development',
   
-  // AI Model configuration (Dobby-70)
-  OPENAI_BASE_URL: requireEnv('OPENAI_BASE_URL', 'https://api.openai.com'),
+  // AI Model configuration (Dobby-70B via Fireworks)
+  OPENAI_BASE_URL: requireEnv('OPENAI_BASE_URL', 'https://api.fireworks.ai/inference'),
   OPENAI_API_KEY: requireEnv('FIREWORKS_API_KEY'),
-  MODEL: process.env.MODEL || 'dobby-70',
+  MODEL: process.env.MODEL || 'accounts/sentientfoundation/models/dobby-unhinged-llama-3-3-70b-new',
+  
+  // External API Keys - ADD THESE LINES
+  COINGECKO_API_KEY: process.env.COINGECKO_API_KEY || '',
+  OPENWEATHER_API_KEY: process.env.OPENWEATHER_API_KEY || '',
   
   // API timeouts and limits
   AI_REQUEST_TIMEOUT: Number(process.env.AI_REQUEST_TIMEOUT || 30000),

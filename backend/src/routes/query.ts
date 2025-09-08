@@ -3,21 +3,21 @@ import { z } from 'zod';
 import { sseHeaders, sseSend, sseDone } from '../utils/stream.js';
 import { fetchCoinGecko } from '../services/coingecko.js';
 import { fetchArxiv } from '../services/arxiv.js';
-import { fetchOpenMeteo } from '../services/openmeteo.js';
+import { fetchOpenWeather } from '../services/openweather.js';
 import { openAIStream } from '../ai/openai.js';
 import { CONFIG } from '../config.js';
 import type { SourceKey, AgentQueryBody, OpenAIStreamDelta } from '../types.js';
 
 const BodySchema = z.object({
-  query: z.string().min(1).max(2000), // Add max length
-  sources: z.array(z.enum(['coingecko', 'arxiv', 'openmeteo'] as const)).optional(),
+  query: z.string().min(1).max(2000),
+  sources: z.array(z.enum(['coingecko', 'arxiv', 'openweather'] as const)).optional(),
   stream: z.boolean().optional().default(true)
 });
 
 const ALL_SOURCES: Record<SourceKey, (q: string) => Promise<any>> = {
   coingecko: fetchCoinGecko,
   arxiv: fetchArxiv,
-  openmeteo: fetchOpenMeteo
+  openweather: fetchOpenWeather
 };
 
 // Enhanced source selection with better heuristics
@@ -37,7 +37,7 @@ function selectSources(query: string): SourceKey[] {
   
   // Weather patterns - more comprehensive
   if (/(weather|temperature|forecast|climate|rain|snow|sunny|cloudy)\s+(in|at|for)|weather\s+in/i.test(q)) {
-    sources.push('openmeteo');
+    sources.push('openweather');
   }
   
   // If no specific patterns found, use arxiv as default (knowledge-focused)
